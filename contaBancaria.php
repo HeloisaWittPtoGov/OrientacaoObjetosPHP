@@ -14,24 +14,12 @@ class contaBancaria{
     return $this->nrConta;
   }
 
-  public function setNrConta($nrConta){
-      if($nrConta != null){
-        $this->nrConta = $nrConta;
-    } else{
-      echo "Informe o numero da conta";
-    }
-  } 
-
   public function getNmTitular(){
     return $this->nmTitular;
   }
 
   public function setNmTitular($nmTitular){
-      if($nmTitular != null){
-        $this->nmTitular = $nmTitular;
-    } else{
-      echo "Informe um nome";
-    }
+    $this->nmTitular = $nmTitular;
   } 
 
   public function getVlSaldo(){
@@ -39,30 +27,27 @@ class contaBancaria{
   }
 
   public function setVlSaldo($vlSaldo){
-    if($vlSaldo != null){
-      $this->vlSaldo = $vlSaldo;
-    }else{
-      echo "Informe o saldo da conta";
-    }
-
+    $this->vlSaldo = $vlSaldo;
   }
 
   public function depositarValor($vlSaldo){
-    $vlDeposito = 0;
-    if($vlDeposito > 0){
-      $this->$vlSaldo += $vlDeposito;
+    $vlTransferir = 0;
+    if($vlTransferir > 0){
+      $this->$vlSaldo += $vlTransferir;
     } else{
       echo "Informe um valor de depósito ";
     }
   }
 
   public function sacarValor($vlSaldo){
-      $vlSacar = 0;
-      if($vlSacar > 0){
-        $vlSacar = $vlSacar - $vlSacar;
-    } else {
-      echo "Informe o valor a ser sacado";
-    }
+    $vlTransferir = 0;
+    if($vlTransferir > 0){
+      if($vlSaldo >= $vlTransferir){
+        $vlSaldo = $vlSaldo- $vlTransferir;
+      } else {
+        echo "Informe o valor a ser sacado";
+      }
+    } 
   }  
 
   public function exibeSaldo($vlSaldo){
