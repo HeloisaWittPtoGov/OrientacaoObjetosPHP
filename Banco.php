@@ -20,8 +20,8 @@ class Banco{
   }
 
   public function transferirValores(contaBancaria $ContaOrigem, contaBancaria $contaDestino, $vlTransferir){
-    if($ContaOrigem->sacar($vlTransferir)){
-      $contaDestino->depositar($vlTransferir);
+    if($ContaOrigem->sacarValor($vlTransferir)){
+      $contaDestino->depositarValor($vlTransferir);
     }
   }
 
