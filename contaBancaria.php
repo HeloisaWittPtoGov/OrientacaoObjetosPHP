@@ -46,5 +46,33 @@ class contaBancaria{
     }
 
   }
-}
 
+  public function depositarValor($vlSaldo){
+    $vlDeposito = 0;
+    if($vlDeposito > 0){
+      $this->$vlSaldo += $vlDeposito;
+    } else{
+      echo "Informe um valor de depósito ";
+    }
+  }
+
+  public function sacarValor($vlSaldo){
+      $vlSacar = 0;
+      if($vlSacar > 0){
+        $vlSacar = $vlSacar - $vlSacar;
+    } else {
+      echo "Informe o valor a ser sacado";
+    }
+  }  
+
+  public function exibeSaldo($vlSaldo){
+      echo $this->$vlSaldo;
+  }
+
+  public function __toString()
+  {
+    return "Numero da conta: ".$this->$nrConta.
+    " Nome do titular: ".$this->$nmTitular.
+    " Saldo: ".$this->$vlSaldo;
+  }
+}
