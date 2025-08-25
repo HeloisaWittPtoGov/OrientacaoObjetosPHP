@@ -31,5 +31,18 @@ class Banco{
     }
   }  
 
-
+  public function menorMaiorSaldo(){
+    $menor = $this->contas[0];
+    $maior = $this->contas = [0];
+    foreach( $this->Contas as $conta){
+      if($conta->getSaldo() < $menor->getSaldo()){
+          $menor = $conta;
+      }
+      if($conta->getSaldo() > $maior->getSaldo()){
+        $maior = $conta;
+      }    
+    }
+    echo $maior;
+    echo $menor;
+  }  
 }
