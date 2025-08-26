@@ -1,17 +1,17 @@
 <?php
-class contaBancaria{
+class ContaBancaria{
 
   private $nrConta;
   private $nmTitular;
   private $vlSaldo;
-  private $ativo;
+  private $blAtivo;
 
  
   public function __construct($nrConta, $nmTitular, $vlSaldo){
     $this->nrConta = $nrConta;
     $this->nmTitular = $nmTitular;
     $this->vlSaldo = $vlSaldo;
-    $this->ativo = true;
+    $this->blAtivo = true;
   }
   public function getNrConta(){
     return $this->nrConta;
@@ -33,21 +33,20 @@ class contaBancaria{
     $this->vlSaldo = $vlSaldo;
   }
 
-  public function getAtivo(){
-    return $this->ativo;
+  public function getBlAtivo(){
+    return $this->blAtivo;
   }
 
   public function bloqueiaConta(){
-    $this->ativo = false;
+    $this->blAtivo = false;
   }
   
   public function desbloqueiaConta(){
-    $this->ativo = true;
+    $this->blAtivo = true;
   }
 
-  public function depositarValor(){
-    $vlTransferir = 0;
-    if($ativo == true){
+  public function depositarValor($vlTransferir){
+    if($this->blAtivo){
       if($vlTransferir > 0){
         $this->vlSaldo += $vlTransferir;
       } else{
@@ -57,36 +56,34 @@ class contaBancaria{
       echo "Conta Bloqueada";
     }
   }
-  
-  public function sacarValor(){
-    $vlTransferir = 0;
-    if($ativo == true){
-      if($vlTransferir > 0){
-        if($vlSaldo >= $vlTransferir){
-          $vlSaldo = $vlSaldo- $vlTransferir;} 
-      } else {
-          echo "Informe o valor a ser sacado";
-        }
-    } else{
-      echo "Conta Bloqueada";
-    }
-    self::$contador++;
-  }  
-
-  public function calcularTarifa(){
-    $tarifa = self::$contador * 2;
-    echo $tarifa;
-  }
 
   public function exibeSaldo(){
       echo $this->vlSaldo;
   }
 
+  public function saque($valor){
+    if(!$this->getBlAtivo()){
+      echo "Conta Bloqueada";
+      return false;
+    }
+    if($valor <= 0){
+      echo "Informe um valor de saque superior a 0,00";
+      return false;
+    }
+    if($this->getVlSaldo() >= $valor){
+      $this->getVlSaldo() - $valor;
+      return true;
+    } else{
+      echo "Saldo Insuficiente";
+      return false;
+    }
+  }
+
   public function __toString()
   {
-    return "Numero da conta: ".$this->nrConta.
-    " Nome do titular: ".$this->nmTitular.
-    " Saldo: ".$this->vlSaldo.
-    " Ativo: ".$this->Ativo;
+    return "Numero da conta: ".$this->nrConta."\n".
+    " Nome do titular: ".$this->nmTitular."\n".
+    " Saldo: ".$this->vlSaldo."\n".
+    " Ativo: ".$this->blAtivo;
   }
 }
